@@ -35,6 +35,22 @@ class Eta
     }
 
     /**
+     * @return int
+     */
+    public function getAllData(): int
+    {
+        return $this->allData;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProcessedData()
+    {
+        return $this->processedData;
+    }
+
+    /**
      * @return string
      */
     public function getProgress(): float
