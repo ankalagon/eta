@@ -13,13 +13,17 @@ class Eta
 
     /**
      * Eta constructor.
-     * @param $startTime
-     * @param $allData
+     * @param int $allData
+     * @param Datetime|null $startTime
      */
-    public function __construct(Datetime $startTime, int $allData)
+    public function __construct(int $allData, Datetime $startTime = null)
     {
-        $this->startTime = $startTime;
         $this->allData = $allData;
+        if ($startTime === null) {
+            $startTime = new DateTime();
+        }
+
+        $this->startTime = $startTime;
     }
 
     /**

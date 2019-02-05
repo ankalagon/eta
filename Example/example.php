@@ -13,10 +13,9 @@ if ((!$loader = includeIfExists(__DIR__."/../vendor/autoload.php")) && (!$loader
 
 echo 'I use some SLEEP function to easier show how it works, please be patient and watch...'.PHP_EOL;
 
-$startTime = new Datetime();
 $allDataToProcess = 400000;
 
-$eta = new Ankalagon\ETA\Eta($startTime, $allDataToProcess);
+$eta = new Ankalagon\ETA\Eta($allDataToProcess);
 
 $progress = 0;
 while ($progress < $allDataToProcess) {
