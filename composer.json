@@ -1,0 +1,19 @@
+{
+  "name": "ankalagon/eta",
+  "type": "library",
+  "description": "Library to count progress and estimated time of arrival",
+  "license": "MIT",
+  "keywords": ["eta", "time", "e.t.a.", "progress"],
+  "authors": [ {
+    "name": "Piotr Suszalski",
+    "email": "piotr@suszalski.pl"
+  } ],
+  "require": {
+    "php": ">=7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Ankalagon\\ETA\\": "src/"
+    }
+  }
+}
