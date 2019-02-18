@@ -8,8 +8,15 @@ class Eta
 {
 
     private $startTime;
-    private $allData;
-    private $processedData;
+    /**
+     * @var int
+     */
+    private $allData = 0;
+
+    /**
+     * @var int
+     */
+    private $processedData = 0;
 
     /**
      * Eta constructor.
@@ -55,6 +62,10 @@ class Eta
      */
     public function getProgress(): float
     {
+        if (!$this->allData) {
+            return (float) 0;
+        }
+
         return (float) number_format($this->processedData / $this->allData * 100, 2);
     }
 
@@ -63,10 +74,14 @@ class Eta
      */
     public function getEta(): string
     {
-        $elapsedTimeInSeconds = (new DateTime())->getTimestamp() - $this->startTime->getTimestamp();
-        $estimatedProgress = $this->processedData/$this->allData;
-        $etaInSeconds = round($elapsedTimeInSeconds / $estimatedProgress);
-        $eta = $etaInSeconds - $elapsedTimeInSeconds;
+        if (!$this->allData) {
+            $eta = 0;
+        } else {
+            $elapsedTimeInSeconds = (new DateTime())->getTimestamp() - $this->startTime->getTimestamp();
+            $estimatedProgress = $this->processedData / $this->allData;
+            $etaInSeconds = ($estimatedProgress == 0) ? 0 : round($elapsedTimeInSeconds / $estimatedProgress);
+            $eta = $etaInSeconds - $elapsedTimeInSeconds;
+        }
 
         return (new DateTime('@'.$eta))->format('G\h i\m s\s');
     }
